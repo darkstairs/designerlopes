@@ -33,7 +33,7 @@ const ContactSection = () => {
           {[
             { icon: Instagram, href: "https://www.instagram.com/dudumafooo/", label: "Instagram" },
             { icon: MessageCircle, href: "https://wa.me/qr/2JSPMBQIMFFWI1", label: "WhatsApp" },
-            { icon: Mail, href: "mailto:seu@email.com", label: "Email" },
+            { icon: Mail, href: "mailto:umbramlopes@gmail.com", label: "Email" },
           ].map(({ icon: Icon, href, label }) => (
             <a
               key={label}
