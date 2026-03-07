@@ -16,14 +16,8 @@ const artworks = [
   { src: art6, title: "Vozes Urbanas", category: "Street Art" },
 ];
 
-const categories = ["Todos", ...new Set(artworks.map((a) => a.category))];
-
 const GallerySection = () => {
-  const [filter, setFilter] = useState("Todos");
   const [selected, setSelected] = useState<typeof artworks[0] | null>(null);
-
-  const filtered =
-    filter === "Todos" ? artworks : artworks.filter((a) => a.category === filter);
 
   return (
     <section id="gallery" className="px-6 py-24 max-w-7xl mx-auto">
@@ -31,34 +25,14 @@ const GallerySection = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="text-4xl md:text-5xl font-display font-bold text-center mb-4"
+        className="text-4xl md:text-5xl font-display font-bold text-center mb-12"
       >
         Galeria
       </motion.h2>
-      <p className="text-center text-muted-foreground font-body mb-12">
-        Selecione uma categoria para filtrar
-      </p>
 
-      {/* Filters */}
-      <div className="flex flex-wrap justify-center gap-3 mb-12">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setFilter(cat)}
-            className={`px-5 py-2 text-sm font-body rounded-full border transition-all duration-300 ${
-              filter === cat
-                ? "bg-primary text-primary-foreground border-primary"
-                : "border-border text-muted-foreground hover:border-primary hover:text-primary"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* Masonry grid */}
+      {/* Grid without filters */}
       <div className="gallery-grid">
-        {filtered.map((art, i) => (
+        {artworks.map((art, i) => (
           <motion.div
             key={art.title}
             layout
