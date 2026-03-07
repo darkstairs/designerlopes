@@ -164,7 +164,7 @@ const Contact = () => {
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                 <item.icon size={28} className="text-primary" />
               </div>
-              <div>
+              <div className="text-center">
                 <p className="text-lg font-display font-bold text-foreground mb-1">
                   {item.label}
                 </p>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Instagram, MessageCircle, Mail } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const links = [
@@ -10,61 +10,29 @@ const links = [
   { label: "Contato", href: "/contato" },
 ];
 
-const socialLinks = [
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: MessageCircle, href: "https://wa.me/5500000000000", label: "WhatsApp" },
-  { icon: Mail, href: "mailto:seu@email.com", label: "Email" },
-];
-
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-        <div className="flex items-center gap-4">
-          <Link to="/" className="flex items-center">
-            <img src="/logo.png" alt="Logo Eduardo Lopes" className="h-10 w-auto" />
-          </Link>
-          <div className="hidden md:flex items-center gap-3 ml-4">
-            {socialLinks.map(({ icon: Icon, href, label }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Icon size={18} />
-              </a>
-            ))}
-          </div>
-        </div>
+        <Link to="/" className="flex items-center">
+          <img src="/logo.png" alt="Logo Eduardo Lopes" className="h-10 w-auto" />
+        </Link>
 
         {/* Desktop */}
         <ul className="hidden md:flex gap-6 items-center">
           {links.map((l) => (
             <li key={l.href} className="relative group">
-              {/* Brush arrow */}
               <span className="absolute -left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 text-primary text-lg" style={{ fontFamily: 'var(--font-display)' }}>
                 ➤
               </span>
-              {l.href.startsWith("/") ? (
-                <Link
-                  to={l.href}
-                  className="relative text-base font-display font-bold tracking-wide text-foreground/80 px-3 py-2 rounded-lg border border-transparent hover:border-primary/40 hover:text-primary hover:scale-110 hover:bg-primary/5 transition-all duration-300 inline-block"
-                >
-                  {l.label}
-                </Link>
-              ) : (
-                <a
-                  href={l.href}
-                  className="relative text-base font-display font-bold tracking-wide text-foreground/80 px-3 py-2 rounded-lg border border-transparent hover:border-primary/40 hover:text-primary hover:scale-110 hover:bg-primary/5 transition-all duration-300 inline-block"
-                >
-                  {l.label}
-                </a>
-              )}
+              <Link
+                to={l.href}
+                className="relative text-base font-display font-bold tracking-wide text-foreground/80 px-3 py-2 rounded-lg border border-transparent hover:border-primary/40 hover:text-primary hover:scale-110 hover:bg-primary/5 transition-all duration-300 inline-block"
+              >
+                {l.label}
+              </Link>
             </li>
           ))}
         </ul>
@@ -90,40 +58,16 @@ const Navbar = () => {
               {links.map((l) => (
                 <li key={l.href} className="group">
                   <span className="inline-block mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300 text-primary" style={{ fontFamily: 'var(--font-display)' }}>➤</span>
-                  {l.href.startsWith("/") ? (
-                    <Link
-                      to={l.href}
-                      onClick={() => setOpen(false)}
-                      className="text-xl font-display font-bold text-foreground/80 hover:text-primary hover:scale-105 transition-all duration-300 inline-block"
-                    >
-                      {l.label}
-                    </Link>
-                  ) : (
-                    <a
-                      href={l.href}
-                      onClick={() => setOpen(false)}
-                      className="text-xl font-display font-bold text-foreground/80 hover:text-primary hover:scale-105 transition-all duration-300 inline-block"
-                    >
-                      {l.label}
-                    </a>
-                  )}
+                  <Link
+                    to={l.href}
+                    onClick={() => setOpen(false)}
+                    className="text-xl font-display font-bold text-foreground/80 hover:text-primary hover:scale-105 transition-all duration-300 inline-block"
+                  >
+                    {l.label}
+                  </Link>
                 </li>
               ))}
             </ul>
-            <div className="flex gap-4 px-6 pb-6">
-              {socialLinks.map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Icon size={20} />
-                </a>
-              ))}
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
