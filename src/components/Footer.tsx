@@ -1,10 +1,10 @@
 import { Instagram, MessageCircle, Mail, Phone } from "lucide-react";
 
 const contactInfo = [
-  { icon: Instagram, label: "@dudumafooo", href: "https://www.instagram.com/dudumafooo/" },
-  { icon: MessageCircle, label: "(35) 99844-3067", href: "https://wa.me/qr/2JSPMBQIMFFWI1" },
-  { icon: Phone, label: "(35) 99844-3067", href: "tel:+5535998443067" },
-  { icon: Mail, label: "umbramlopes@gmail.com", href: "mailto:umbramlopes@gmail.com" },
+  { id: "instagram", icon: Instagram, label: "@dudumafooo", href: "https://www.instagram.com/dudumafooo/" },
+  { id: "whatsapp", icon: MessageCircle, label: "(35) 99844-3067", href: "https://wa.me/qr/2JSPMBQIMFFWI1" },
+  { id: "phone", icon: Phone, label: "(35) 99844-3067", href: "tel:+5535998443067" },
+  { id: "email", icon: Mail, label: "umbramlopes@gmail.com", href: "mailto:umbramlopes@gmail.com" },
 ];
 
 const Footer = () => (
