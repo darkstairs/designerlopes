@@ -22,7 +22,7 @@ const ContactSection = () => {
         </p>
 
         <a
-          href="mailto:seu@email.com"
+          href="mailto:umbramlopes@gmail.com"
           className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-body text-sm uppercase tracking-widest hover:opacity-90 transition-opacity rounded-lg"
         >
           <Mail size={18} />
@@ -31,9 +31,9 @@ const ContactSection = () => {
 
         <div className="flex justify-center gap-6 mt-12">
           {[
-            { icon: Instagram, href: "#", label: "Instagram" },
-            { icon: MessageCircle, href: "https://wa.me/5500000000000", label: "WhatsApp" },
-            { icon: Mail, href: "mailto:seu@email.com", label: "Email" },
+            { icon: Instagram, href: "https://www.instagram.com/dudumafooo/", label: "Instagram" },
+            { icon: MessageCircle, href: "https://wa.me/qr/2JSPMBQIMFFWI1", label: "WhatsApp" },
+            { icon: Mail, href: "mailto:umbramlopes@gmail.com", label: "Email" },
           ].map(({ icon: Icon, href, label }) => (
             <a
               key={label}

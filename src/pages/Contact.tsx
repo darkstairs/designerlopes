@@ -7,20 +7,20 @@ const contactItems = [
   {
     icon: Instagram,
     label: "Instagram",
-    value: "@eduardolopes",
-    href: "https://instagram.com/eduardolopes",
+    value: "@dudumafooo",
+    href: "https://www.instagram.com/dudumafooo/",
   },
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    value: "+55 (00) 00000-0000",
-    href: "https://wa.me/5500000000000",
+    value: "WhatsApp",
+    href: "https://wa.me/qr/2JSPMBQIMFFWI1",
   },
   {
     icon: Mail,
     label: "Email",
-    value: "seu@email.com",
-    href: "mailto:seu@email.com",
+    value: "umbramlopes@gmail.com",
+    href: "mailto:umbramlopes@gmail.com",
   },
 ];
 
