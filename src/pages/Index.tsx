@@ -43,7 +43,7 @@ const Index = () => {
         </motion.div>
       </section>
 
-      <ContactSection />
+      
       <Footer />
     </div>
   );
