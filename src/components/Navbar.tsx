@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram, MessageCircle, Mail } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const links = [
-  { label: "Início", href: "#hero" },
-  { label: "Galeria", href: "#gallery" },
+  { label: "Início", href: "/" },
+  { label: "Galeria", href: "/galeria" },
   { label: "Sobre", href: "#about" },
   { label: "Contato", href: "#contact" },
+];
+
+const socialLinks = [
+  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: MessageCircle, href: "https://wa.me/5500000000000", label: "WhatsApp" },
+  { icon: Mail, href: "mailto:seu@email.com", label: "Email" },
 ];
 
 const Navbar = () => {
