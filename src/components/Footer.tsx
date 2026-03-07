@@ -1,19 +1,19 @@
 import { Instagram, MessageCircle, Mail, Phone } from "lucide-react";
 
 const contactInfo = [
-  { icon: Instagram, label: "@dudumafooo", href: "https://www.instagram.com/dudumafooo/" },
-  { icon: MessageCircle, label: "(35) 99844-3067", href: "https://wa.me/qr/2JSPMBQIMFFWI1" },
-  { icon: Phone, label: "(35) 99844-3067", href: "tel:+5535998443067" },
-  { icon: Mail, label: "umbramlopes@gmail.com", href: "mailto:umbramlopes@gmail.com" },
+  { id: "instagram", icon: Instagram, label: "@dudumafooo", href: "https://www.instagram.com/dudumafooo/" },
+  { id: "whatsapp", icon: MessageCircle, label: "(35) 99844-3067", href: "https://wa.me/qr/2JSPMBQIMFFWI1" },
+  { id: "phone", icon: Phone, label: "(35) 99844-3067", href: "tel:+5535998443067" },
+  { id: "email", icon: Mail, label: "umbramlopes@gmail.com", href: "mailto:umbramlopes@gmail.com" },
 ];
 
 const Footer = () => (
   <footer className="border-t border-border px-6 py-10">
     <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
       <div className="flex flex-wrap justify-center gap-6">
-        {contactInfo.map(({ icon: Icon, label, href }) => (
+        {contactInfo.map(({ id, icon: Icon, label, href }) => (
           <a
-            key={label}
+            key={id}
             href={href}
             target={href.startsWith("http") ? "_blank" : undefined}
             rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
