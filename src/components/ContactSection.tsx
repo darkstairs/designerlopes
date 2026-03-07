@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Instagram, Linkedin } from "lucide-react";
+import { Mail, Instagram, MessageCircle } from "lucide-react";
 
 const ContactSection = () => {
   return (
@@ -32,13 +32,15 @@ const ContactSection = () => {
         <div className="flex justify-center gap-6 mt-12">
           {[
             { icon: Instagram, href: "#", label: "Instagram" },
-            { icon: Linkedin, href: "#", label: "LinkedIn" },
+            { icon: MessageCircle, href: "https://wa.me/5500000000000", label: "WhatsApp" },
             { icon: Mail, href: "mailto:seu@email.com", label: "Email" },
           ].map(({ icon: Icon, href, label }) => (
             <a
               key={label}
               href={href}
               aria-label={label}
+              target={label === "WhatsApp" ? "_blank" : undefined}
+              rel={label === "WhatsApp" ? "noopener noreferrer" : undefined}
               className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
             >
               <Icon size={20} />
