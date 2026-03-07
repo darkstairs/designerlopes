@@ -11,7 +11,7 @@ const Footer = () => (
   <footer className="border-t border-border px-6 py-10">
     <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
       <div className="flex flex-wrap justify-center gap-6">
-        {contactInfo.map(({ icon: Icon, label, href }) => (
+        {contactInfo.map(({ id, icon: Icon, label, href }) => (
           <a
             key={label}
             href={href}
