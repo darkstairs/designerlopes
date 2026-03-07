@@ -2,10 +2,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Instagram, MessageCircle, Mail } from "lucide-react";
-import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 
 const contactItems = [
   {
@@ -29,8 +25,6 @@ const contactItems = [
 ];
 
 const Contact = () => {
-  const [sent, setSent] = useState(false);
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -52,103 +46,6 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        {/* Formulário sempre visível */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="max-w-lg mx-auto mb-12"
-        >
-          <div className="p-8 rounded-xl border border-border bg-card">
-            <h3 className="text-2xl font-display font-bold text-foreground mb-2 text-center">
-              Solicite análise
-            </h3>
-            <p className="text-sm text-muted-foreground font-body mb-6 text-center">
-              Preencha os dados abaixo e envie sua solicitação.
-            </p>
-
-            {sent ? (
-              <div className="text-center py-8">
-                <p className="text-lg font-display font-bold text-primary mb-2">
-                  Mensagem enviada com sucesso!
-                </p>
-                <p className="text-sm text-muted-foreground font-body mb-4">
-                  Entrarei em contato em breve.
-                </p>
-                <Button variant="outline" onClick={() => setSent(false)}>
-                  Enviar outra mensagem
-                </Button>
-              </div>
-            ) : (
-              <form
-                action="https://formsubmit.co/umbramlopes@gmail.com"
-                method="POST"
-                onSubmit={() => setSent(true)}
-                className="space-y-4 text-left"
-              >
-                {/* FormSubmit config */}
-                <input type="hidden" name="_subject" value="Nova solicitação de análise" />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_template" value="table" />
-                <input type="hidden" name="_next" value={window.location.href} />
-
-                <div>
-                  <label className="text-sm font-body text-foreground mb-1 block">
-                    Seu Email
-                  </label>
-                  <Input
-                    type="email"
-                    name="Email"
-                    required
-                    placeholder="seuemail@exemplo.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-body text-foreground mb-1 block">
-                    Seu WhatsApp
-                  </label>
-                  <Input
-                    type="tel"
-                    name="WhatsApp"
-                    required
-                    placeholder="(00) 00000-0000"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-body text-foreground mb-1 block">
-                    Tipo de Produto Desejado
-                  </label>
-                  <Input
-                    type="text"
-                    name="Produto"
-                    required
-                    placeholder="Ex: Logo, ilustração, banner..."
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-body text-foreground mb-1 block">
-                    Descreva o que você precisa
-                  </label>
-                  <Textarea
-                    name="Mensagem"
-                    required
-                    placeholder="Conte mais detalhes sobre o seu projeto..."
-                    rows={4}
-                  />
-                </div>
-
-                <Button type="submit" className="w-full mt-2">
-                  Enviar
-                </Button>
-              </form>
-            )}
-          </div>
-        </motion.div>
-
-        {/* Ícones de contato */}
         <div className="grid gap-6 md:grid-cols-3 max-w-2xl mx-auto">
           {contactItems.map((item, i) => (
             <motion.a
@@ -158,7 +55,7 @@ const Contact = () => {
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 + i * 0.12 }}
+              transition={{ duration: 0.5, delay: 0.2 + i * 0.12 }}
               className="group flex flex-col items-center gap-4 p-8 rounded-xl border border-border bg-card hover:border-primary/50 transition-all duration-300"
             >
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
