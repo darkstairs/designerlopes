@@ -88,12 +88,13 @@ const Navbar = () => {
           >
             <ul className="flex flex-col gap-4 px-6 py-6">
               {links.map((l) => (
-                <li key={l.href}>
+                <li key={l.href} className="group">
+                  <span className="inline-block mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300 text-primary" style={{ fontFamily: 'var(--font-display)' }}>➤</span>
                   {l.href.startsWith("/") ? (
                     <Link
                       to={l.href}
                       onClick={() => setOpen(false)}
-                      className="text-lg font-body text-muted-foreground hover:text-primary transition-colors"
+                      className="text-xl font-display font-bold text-foreground/80 hover:text-primary hover:scale-105 transition-all duration-300 inline-block"
                     >
                       {l.label}
                     </Link>
@@ -101,7 +102,7 @@ const Navbar = () => {
                     <a
                       href={l.href}
                       onClick={() => setOpen(false)}
-                      className="text-lg font-body text-muted-foreground hover:text-primary transition-colors"
+                      className="text-xl font-display font-bold text-foreground/80 hover:text-primary hover:scale-105 transition-all duration-300 inline-block"
                     >
                       {l.label}
                     </a>
