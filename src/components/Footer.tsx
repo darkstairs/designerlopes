@@ -13,7 +13,7 @@ const Footer = () => (
       <div className="flex flex-wrap justify-center gap-6">
         {contactInfo.map(({ id, icon: Icon, label, href }) => (
           <a
-            key={label}
+            key={id}
             href={href}
             target={href.startsWith("http") ? "_blank" : undefined}
             rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
