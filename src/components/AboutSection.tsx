@@ -26,6 +26,23 @@ const AboutSection = () => {
             Cada projeto é uma oportunidade de explorar novas perspectivas e
             criar algo único que ressoa com as pessoas.
           </p>
+          <div className="mt-8">
+            <p className="text-xs uppercase tracking-[0.3em] text-primary font-body mb-3">
+              Vídeo em destaque
+            </p>
+            <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-border shadow-lg">
+              <iframe
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="Vídeo do artista"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+            <p className="text-xs text-muted-foreground font-body mt-2">
+              Substitua o link acima pelo seu vídeo do YouTube
+            </p>
+          </div>
         </motion.div>
 
         <motion.div
