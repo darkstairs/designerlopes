@@ -8,6 +8,19 @@ const HeroSection = () => {
       className="min-h-screen flex items-center justify-center px-6 pt-16"
     >
       <div className="text-center max-w-3xl">
+        {/* Foto de perfil */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mb-6 w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary/30 shadow-lg"
+        >
+          <img
+            src="/profile.jpg"
+            alt="Eduardo Lopes"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
