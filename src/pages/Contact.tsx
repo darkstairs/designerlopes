@@ -1,12 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { Instagram, MessageCircle, Mail, Phone } from "lucide-react";
+import { Instagram, MessageCircle, Mail } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
 
 const contactItems = [
   {
@@ -22,56 +21,25 @@ const contactItems = [
     href: "https://wa.me/qr/2JSPMBQIMFFWI1",
   },
   {
-    icon: Phone,
-    label: "Telefone",
-    value: "(35) 99844-3067",
-    href: "tel:+5535998443067",
-  },
-  {
     icon: Mail,
     label: "Email",
     value: "umbramlopes@gmail.com",
-    href: null,
+    href: "mailto:umbramlopes@gmail.com",
   },
 ];
 
 const Contact = () => {
-  const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({
-    email: "",
-    whatsapp: "",
-    produto: "",
-    mensagem: "",
-  });
-  const { toast } = useToast();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const subject = encodeURIComponent("Novo pedido de orçamento");
-    const body = encodeURIComponent(
-      `Email do cliente: ${formData.email}\nWhatsApp: ${formData.whatsapp}\nProduto desejado: ${formData.produto}\n\nMensagem:\n${formData.mensagem}`
-    );
-
-    window.open(`mailto:umbramlopes@gmail.com?subject=${subject}&body=${body}`, "_blank");
-
-    toast({
-      title: "Redirecionando para seu email!",
-      description: "Complete o envio no seu aplicativo de email.",
-    });
-
-    setFormData({ email: "", whatsapp: "", produto: "", mensagem: "" });
-    setShowForm(false);
-  };
+  const [sent, setSent] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <section className="px-6 pt-32 pb-24 max-w-3xl mx-auto text-center">
+      <section className="px-6 pt-32 pb-24 max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          className="text-center"
         >
           <p className="text-xs uppercase tracking-[0.3em] text-primary font-body mb-4">
             Contato
@@ -79,80 +47,60 @@ const Contact = () => {
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
             Vamos <span className="text-gradient">criar</span> juntos?
           </h1>
-          <p className="text-muted-foreground font-body mb-16 max-w-lg mx-auto">
+          <p className="text-muted-foreground font-body mb-12 max-w-lg mx-auto">
             Entre em contato por qualquer um dos canais abaixo. Será um prazer conversar sobre seu projeto.
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {contactItems.map((item, i) => {
-            const isEmail = item.label === "Email";
+        {/* Formulário sempre visível */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="max-w-lg mx-auto mb-12"
+        >
+          <div className="p-8 rounded-xl border border-border bg-card">
+            <h3 className="text-2xl font-display font-bold text-foreground mb-2 text-center">
+              Solicite análise
+            </h3>
+            <p className="text-sm text-muted-foreground font-body mb-6 text-center">
+              Preencha os dados abaixo e envie sua solicitação.
+            </p>
 
-            const content = (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="group flex flex-col items-center gap-4 p-8 rounded-xl border border-border bg-card hover:border-primary/50 transition-all duration-300 cursor-pointer"
-                onClick={isEmail ? () => setShowForm(true) : undefined}
+            {sent ? (
+              <div className="text-center py-8">
+                <p className="text-lg font-display font-bold text-primary mb-2">
+                  Mensagem enviada com sucesso!
+                </p>
+                <p className="text-sm text-muted-foreground font-body mb-4">
+                  Entrarei em contato em breve.
+                </p>
+                <Button variant="outline" onClick={() => setSent(false)}>
+                  Enviar outra mensagem
+                </Button>
+              </div>
+            ) : (
+              <form
+                action="https://formsubmit.co/umbramlopes@gmail.com"
+                method="POST"
+                onSubmit={() => setSent(true)}
+                className="space-y-4 text-left"
               >
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <item.icon size={28} className="text-primary" />
-                </div>
-                <div>
-                  <p className="text-lg font-display font-bold text-foreground mb-1">
-                    {item.label}
-                  </p>
-                  <p className="text-sm text-muted-foreground font-body">
-                    {item.value}
-                  </p>
-                </div>
-              </motion.div>
-            );
+                {/* FormSubmit config */}
+                <input type="hidden" name="_subject" value="Nova solicitação de análise" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_next" value={window.location.href} />
 
-            if (isEmail) return content;
-
-            return (
-              <a
-                key={item.label}
-                href={item.href!}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {content}
-              </a>
-            );
-          })}
-        </div>
-
-        {/* Formulário de contato */}
-        {showForm && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="mt-12 max-w-lg mx-auto text-left"
-          >
-            <div className="p-8 rounded-xl border border-border bg-card">
-              <h3 className="text-2xl font-display font-bold text-foreground mb-2 text-center">
-                Solicite um orçamento
-              </h3>
-              <p className="text-sm text-muted-foreground font-body mb-6 text-center">
-                Preencha os dados abaixo e envie sua solicitação.
-              </p>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="text-sm font-body text-foreground mb-1 block">
                     Seu Email
                   </label>
                   <Input
                     type="email"
+                    name="Email"
                     required
                     placeholder="seuemail@exemplo.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                 </div>
 
@@ -162,10 +110,9 @@ const Contact = () => {
                   </label>
                   <Input
                     type="tel"
+                    name="WhatsApp"
                     required
                     placeholder="(00) 00000-0000"
-                    value={formData.whatsapp}
-                    onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
                   />
                 </div>
 
@@ -175,10 +122,9 @@ const Contact = () => {
                   </label>
                   <Input
                     type="text"
+                    name="Produto"
                     required
                     placeholder="Ex: Logo, ilustração, banner..."
-                    value={formData.produto}
-                    onChange={(e) => setFormData({ ...formData, produto: e.target.value })}
                   />
                 </div>
 
@@ -187,30 +133,48 @@ const Contact = () => {
                     Descreva o que você precisa
                   </label>
                   <Textarea
+                    name="Mensagem"
                     required
                     placeholder="Conte mais detalhes sobre o seu projeto..."
                     rows={4}
-                    value={formData.mensagem}
-                    onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
                   />
                 </div>
 
-                <div className="flex gap-3 pt-2">
-                  <Button type="submit" className="flex-1">
-                    Enviar
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setShowForm(false)}
-                  >
-                    Cancelar
-                  </Button>
-                </div>
+                <Button type="submit" className="w-full mt-2">
+                  Enviar
+                </Button>
               </form>
-            </div>
-          </motion.div>
-        )}
+            )}
+          </div>
+        </motion.div>
+
+        {/* Ícones de contato */}
+        <div className="grid gap-6 md:grid-cols-3 max-w-2xl mx-auto">
+          {contactItems.map((item, i) => (
+            <motion.a
+              key={item.label}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 + i * 0.12 }}
+              className="group flex flex-col items-center gap-4 p-8 rounded-xl border border-border bg-card hover:border-primary/50 transition-all duration-300"
+            >
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                <item.icon size={28} className="text-primary" />
+              </div>
+              <div>
+                <p className="text-lg font-display font-bold text-foreground mb-1">
+                  {item.label}
+                </p>
+                <p className="text-sm text-muted-foreground font-body">
+                  {item.value}
+                </p>
+              </div>
+            </motion.a>
+          ))}
+        </div>
       </section>
       <Footer />
     </div>
