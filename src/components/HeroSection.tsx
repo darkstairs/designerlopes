@@ -41,15 +41,18 @@ const HeroSection = () => {
           Bem-vindo ao meu espaço criativo. Explore minhas obras e descubra o
           universo por trás de cada peça.
         </motion.p>
-        <motion.a
-          href="#gallery"
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="inline-block mt-10 px-8 py-3 border border-primary text-primary font-body text-sm uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-all duration-300"
         >
-          Ver Galeria
-        </motion.a>
+          <Link
+            to="/galeria"
+            className="inline-block mt-10 px-8 py-3 border border-primary text-primary font-body text-sm uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+          >
+            Ver Galeria
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
