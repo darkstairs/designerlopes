@@ -41,10 +41,9 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-tight"
+          className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight whitespace-nowrap"
         >
-          Criando <span className="text-gradient">arte</span> que{" "}
-          <span className="italic">inspira</span>
+          Criando <span className="text-gradient">arte</span> que <span className="italic">inspira</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
